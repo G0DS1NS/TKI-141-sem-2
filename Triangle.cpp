@@ -1,4 +1,5 @@
 #include <cmath>
+#include <stdexcept>
 #include "Triangle.h"
 
 double Triangle::GetHypotenuse()
@@ -16,8 +17,12 @@ double Triangle::GetRadius()
 	return catheter1 / (catheter2 / hypotenuse);
 }
 
-Triangle::Triangle(double catheter1, double catheter2) :
-	catheter1{ catheter1 }, catheter2{ catheter2 }, hypotenuse{ GetHypotenuse() }
+Triangle::Triangle(double catheter1, double catheter2) 
 {
-
+	if(catheter1 <= numeric_limits<double>::epsilon() || catheter2 <= numeric_limits<double>::epsilon())
+	{
+		throw invalid_argument("Negative value not allowes");
+	}
+	this->catheter1 = catheter1;
+	this->catheter2 = catheter2;
 }
