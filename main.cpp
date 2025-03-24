@@ -9,7 +9,7 @@ using namespace std;
 double input_catheter(const string& message);
 
 int main(void)
-{\
+{
 	double catheter1 = input_catheter("Enter the len of first catheter: ");
 	double catheter2 = input_catheter("Enter the len of second catheter: ");
 	try{
