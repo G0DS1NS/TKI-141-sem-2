@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <stdlib.h>
 #include <float.h>
+#include <limits>
 #include "Geksogen.h"
 #include "Point.h"
 
@@ -41,7 +42,7 @@ Geksogen::Geksogen()
 {
 	try
 	{
-		std::cin >> *this;
+		*this >> std::cin;
 	}
 	catch(std::runtime_error)
 	{
@@ -56,7 +57,7 @@ void Geksogen::Geksogen_with_len()
 	for (size_t i = 0; i < lens.size(); i++)
 	{
 		std::cin >> len;
-		if (len < DBL_EPSILON)
+		if (len < std::numeric_limits<double>::epsilon())
 		{
 			throw std::invalid_argument("Your input is uncorrected");
 		}
@@ -71,7 +72,7 @@ void Geksogen::Geksogen_with_point()
 	for (size_t i = 0; i < list_points.size() - 1; i++)
 	{
 		this->lens.push_back(GetLen(list_points[i], list_points[i + 1]));
-		if (lens[lens.size() - 1] < DBL_EPSILON)
+		if (lens[lens.size() - 1] < std::numeric_limits<double>::epsilon())
 		{
 			throw std::invalid_argument("Your input is uncorrected");
 		}
@@ -93,7 +94,7 @@ double Geksogen::GetPerimeter()
 	return lens[0] * 6;
 }
 
-std::istream& operator>>(std::istream& input, Geksogen& fig)
+std::istream& Geksogen::operator>>(std::istream& input)
 {
 	typedef enum
 	{
@@ -109,12 +110,12 @@ std::istream& operator>>(std::istream& input, Geksogen& fig)
 		{
 		case with_len:
 		{
-			fig.Geksogen_with_len();
+			this->Geksogen_with_len();
 			break;
 		}
 		case with_point:
 		{
-			fig.Geksogen_with_point();
+			this->Geksogen_with_point();
 			break;
 		}
 		default:
