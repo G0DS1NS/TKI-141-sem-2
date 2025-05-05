@@ -2,7 +2,6 @@
 #include <iostream>
 #include <stdexcept>
 #include <stdlib.h>
-#include <float.h>
 #include <limits>
 #include "Geksogen.h"
 #include "Point.h"
@@ -130,5 +129,10 @@ std::istream& Geksogen::operator>>(std::istream& input)
 	}
 
 	return input;
+
+}
+ 
+void Geksogen::initialize_obj()
+{
 
 }
