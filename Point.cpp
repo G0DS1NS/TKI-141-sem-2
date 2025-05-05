@@ -1,18 +1,18 @@
 #include "Point.h"
 
-double Point::GetX()
+double Point::GetX() const
 {
     return x;
 }
 
-double Point::GetY()
+double Point::GetY() const
 {
     return y;
 }
 
 bool Point::operator==(Point& other)
 {
-    return this->x == other.GetX() && this->y == other.GetY();
+    return this->x == other.GetX() + std::numeric_limits<double>::epsilon() && this->y == other.GetY();
 }
 
 
