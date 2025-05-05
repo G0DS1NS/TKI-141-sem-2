@@ -17,6 +17,7 @@ private:
 	void Geksogen_with_point();
 public:
 	Geksogen();
+	void initialize_obj() override;
 	double GetRadius() override;
 	double GetSquare() override;
 	double GetPerimeter() override;
