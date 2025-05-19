@@ -13,33 +13,6 @@ double Geksogen::GetLen(Point& point1, Point& point2)
 }
 
 
-void Geksogen::Geksogen_with_len()
-{
-	double len = 0;
-	for (size_t i = 0; i < lens.size(); i++)
-	{
-		std::cin >> len;
-		if (len < std::numeric_limits<double>::epsilon())
-		{
-			throw std::invalid_argument("Your input is uncorrected");
-		}
-		this->lens.push_back(len);
-	}
-}
-
-
-void Geksogen::Geksogen_with_point()
-{
-	list_points = points();
-	for (size_t i = 0; i < list_points.size() - 1; i++)
-	{
-		this->lens.push_back(GetLen(list_points[i], list_points[i + 1]));
-		if (lens[lens.size() - 1] < std::numeric_limits<double>::epsilon())
-		{
-			throw std::invalid_argument("Your input is uncorrected");
-		}
-	}
-}
 
 bool Geksogen::IsRightGeksogen()
 {
@@ -95,47 +68,6 @@ double Geksogen::GetPerimeter()
 	return lens[0] * 6;
 }
 
-std::istream& Geksogen::operator>>(std::istream& input)
-{
-	typedef enum
-	{
-		with_len = 1,
-		with_point
-	}choose;
-	std::cout << "Enter the your choose: " << std::endl;
-	int ch_number = 0;
-	input >> ch_number;
-	try
-	{
-		switch ((choose)ch_number)
-		{
-		case with_len:
-		{
-			this->Geksogen_with_len();
-			break;
-		}
-		case with_point:
-		{
-			this->Geksogen_with_point();
-			break;
-		}
-		default:
-		{
-			throw std::invalid_argument("Error");
-		}
-		}
-	}
-	catch (std::invalid_argument)
-	{
-		throw std::runtime_error("Error");
-	}
 
-	if (!IsRightGeksogen())
-	{
-		exit(1);
-	}
 
-	return input;
-
-}
  
