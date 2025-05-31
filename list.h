@@ -9,6 +9,8 @@ private:
 	size_t size;
 public:
 	CircularList() : head(nullptr), size(0) {}
+	CircularList(const CircularList& list);
+	CircularList<T>* operator=(CircularList<T>* second_list);
 	~CircularList();
 	bool IsEmpty();
 	size_t GetSize();
@@ -22,4 +24,8 @@ public:
 	void remove(size_t index);
 	T& get(size_t index);
 };
+
+template <typename T>
+bool operator==(CircularList<T>*first_list, CircularList<T> second_list);
+
 
