@@ -10,6 +10,6 @@ public:
 	virtual double GetSquare() = 0;
 	virtual double GetPerimeter() = 0;
 	virtual double GetRadius() = 0;
-	virtual std::string String(double number);
+	virtual std::string String(double number) = 0;
 	virtual ~Mnog() = default;
 };
