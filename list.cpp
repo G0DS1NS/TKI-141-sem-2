@@ -5,6 +5,29 @@
 using namespace std;
 
 template<typename T>
+CircularList<T>::CircularList(const CircularList& list)
+{
+    CircularList* old_lis = &this;
+    old_list = list;
+}
+
+template<typename T>
+bool operator==(CircularList<T>* first_list, CircularList<T> second_list)
+{
+    CircularList<T>* temp = new CircularList<T>;
+    temp = first_list;
+    first_list = second_list;
+    second_list = temp;
+    delete temp;
+}
+
+template<typename T>
+CircularList<T>* CircularList<T>::operator=(CircularList<T>* second_list)
+{
+    &this = second_list;
+}
+
+template<typename T>
 inline CircularList<T>::~CircularList()
 {
 	clear();
