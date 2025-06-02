@@ -10,10 +10,7 @@ private:
 public:
 	CircularList(const CircularList& list);
 	CircularList(CircularList&& other) noexcept;
-	CircularList& operator=(const CircularList& other);
-	
 	CircularList() : head(nullptr), size(0) {}
-	CircularList(const CircularList& list);
 	CircularList& operator=(const CircularList& other);
 	CircularList& operator=(CircularList&& other) noexcept;
 	~CircularList();
