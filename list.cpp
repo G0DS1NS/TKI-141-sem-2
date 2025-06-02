@@ -212,11 +212,6 @@ void CircularList<T>::clear()
 template<typename T>
 void CircularList<T>::print()
 {
-    if (IsEmpty())
-    {
-        cout << "()";
-        return;
-    }
     stringstream ss;
     ss << "(";
     Element<T>* last = head;
