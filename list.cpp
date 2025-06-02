@@ -4,6 +4,64 @@
 
 using namespace std;
 
+template <typename T>
+CircularList::CircularList(const CircularList& other) : head(nullptr), size(0) {
+        if (other.head) {
+            head = new Element<T>(other.head->data);
+            Element<T>* current = head;
+            Element<T>* otherCurrent = other.head->next;
+            
+            while (otherCurrent != other.head) {
+                current->next = new Element<T>(otherCurrent->data);
+                current = current->next;
+                otherCurrent = otherCurrent->next;
+            }
+            current->next = head;
+            size = other.size;
+        }
+    }
+
+template <typename T>
+CircularList::CircularList(CircularList&& other) noexcept 
+        : head(other.head), size(other.size) {
+        other.head = nullptr;
+        other.size = 0;
+    }
+
+template <typename T>
+CircularList& CircularList::operator=(const CircularList& other) {
+        if (this != &other) {
+            clear();
+            
+            if (other.head) {
+                head = new Element<T>(other.head->data);
+                Element<T>* current = head;
+                Element<T>* otherCurrent = other.head->next;
+                
+                while (otherCurrent != other.head) {
+                    current->next = new Element<T>(otherCurrent->data);
+                    current = current->next;
+                    otherCurrent = otherCurrent->next;
+                }
+                current->next = head;
+                size = other.size;
+            }
+        }
+        return *this;
+    }
+
+template <typename T>
+CircularList& CircularList::operator=(CircularList&& other) noexcept {
+        if (this != &other) {
+            clear();
+            head = other.head;
+            size = other.size;
+            other.head = nullptr;
+            other.size = 0;
+        }
+        return *this;
+    }
+
 template<typename T>
 CircularList<T>::CircularList(const CircularList& list)
 {
