@@ -8,9 +8,14 @@ private:
 	Element<T>* head;
 	size_t size;
 public:
+	CircularList(const CircularList& list);
+	CircularList(CircularList&& other) noexcept;
+	CircularList& operator=(const CircularList& other);
+	
 	CircularList() : head(nullptr), size(0) {}
 	CircularList(const CircularList& list);
-	CircularList<T>* operator=(CircularList<T>* second_list);
+	CircularList& operator=(const CircularList& other);
+	CircularList& operator=(CircularList&& other) noexcept;
 	~CircularList();
 	bool IsEmpty();
 	size_t GetSize();
